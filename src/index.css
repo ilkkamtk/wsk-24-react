@@ -80,26 +80,26 @@ td a {
 }
 
 /* media item dialog */
-dialog {
+/* dialog {
   position: fixed;
   top: 5%;
   height: 80dvh;
   background: rgba(0, 0, 0, 0.8);
   z-index: 9999;
   color: rgba(255, 255, 255, 0.87);
-}
+} */
 
-dialog img,
+/* dialog img,
 video {
   height: 70%;
   object-fit: contain;
-}
+} */
 
 /* single view */
-img,
+/* img,
 video {
   max-width: 100%;
-}
+} */
 
 /* Form */
 form {
