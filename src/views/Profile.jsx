@@ -27,7 +27,15 @@ export const Profile = () => {
       <p>
         <Link to="/">Navigoi takaisin etusivulle</Link>
       </p>
-      <div>{user && <p>Käyttäjätunnus: {user.username} </p>}</div>
+      <div>
+        {user && (
+          <>
+            <p>Käyttäjätunnus: {user.username} </p>
+            <p>email: {user.email} </p>
+            <p>luotu: {new Date(user.created_at).toLocaleString('fi-FI')}</p>
+          </>
+        )}
+      </div>
     </div>
   );
 };
