@@ -12,8 +12,12 @@ const LoginForm = () => {
 
   const doLogin = async () => {
     console.log('doLogin', inputs);
-    const userData = await login(inputs);
-    console.log('doLogin', userData);
+    try {
+      const userData = await login(inputs);
+      console.log('doLogin', userData);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   const {handleSubmit, handleInputChange, inputs} = useForm(
