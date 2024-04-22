@@ -7,7 +7,7 @@ const useMedia = () => {
   const getMedia = async () => {
     try {
       const mediaResult = await fetchData(
-        impot.meta.env.VITE_MEDIA_API + '/media',
+        import.meta.env.VITE_MEDIA_API + '/media',
       );
 
       const mediaWithUser = await Promise.all(
@@ -19,7 +19,7 @@ const useMedia = () => {
 
       setMediaArray(mediaWithUser);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
