@@ -1,6 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 import {useAuthentication} from '../hooks/apiHooks';
 import useForm from '../hooks/formHooks';
+import Button from './UI/Button';
 
 // LoginForm.jsx
 const LoginForm = () => {
@@ -55,7 +56,7 @@ const LoginForm = () => {
             autoComplete="current-password"
           />
         </div>
-        <button type="submit">Login</button>
+        <Button text="Login" />
       </form>
     </>
   );
