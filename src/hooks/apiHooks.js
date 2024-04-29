@@ -211,9 +211,15 @@ const useLike = () => {
     );
   };
 
-  const getUserLikeByMediaId = (media_id) => {
+  const getUserLikeByMediaId = (media_id, token) => {
+    const options = {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    };
     return fetchData(
       import.meta.env.VITE_MEDIA_API + '/likes/bymedia/user/' + media_id,
+      options,
     );
   };
 
