@@ -1,31 +1,35 @@
 import {useUser} from '../hooks/apiHooks';
 import useForm from '../hooks/formHooks';
-import Button from '../components/UI/Button';
 
+// RegisterForm.jsx
 const RegisterForm = () => {
-  const {register} = useUser();
-
+  const {postUser} = useUser();
   const initValues = {
     username: '',
     password: '',
-    email: '',
   };
 
   const doRegister = async () => {
-    console.log('doRegister', inputs);
+    // console.log(inputs);
     try {
-      const userData = await register(inputs);
-      console.log('doRegister', userData);
+      const registerResult = await postUser(inputs);
+      // console.log('registerResult', registerResult);
+      if (registerResult.user) {
+        alert(registerResult.message);
+      } else {
+        alert('Register failed');
+      }
     } catch (error) {
       alert(error.message);
     }
   };
 
-  const {handleSubmit, handleInputChange, inputs} = useForm(
+  const {inputs, handleInputChange, handleSubmit} = useForm(
     doRegister,
     initValues,
   );
 
+  console.log(inputs);
   return (
     <>
       <h1>Register</h1>
@@ -37,15 +41,7 @@ const RegisterForm = () => {
             type="text"
             id="registeruser"
             onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="registeremail">Email</label>
-          <input
-            name="email"
-            type="email"
-            id="registeremail"
-            onChange={handleInputChange}
+            autoComplete="username"
           />
         </div>
         <div>
@@ -55,9 +51,20 @@ const RegisterForm = () => {
             type="password"
             id="registerpassword"
             onChange={handleInputChange}
+            autoComplete="current-password"
           />
         </div>
-        <Button text="Register" />
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            name="email"
+            type="email"
+            id="email"
+            onChange={handleInputChange}
+            autoComplete="email"
+          />
+        </div>
+        <button type="submit">Register</button>
       </form>
     </>
   );

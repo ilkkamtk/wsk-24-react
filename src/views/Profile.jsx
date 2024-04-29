@@ -1,41 +1,28 @@
-import {Link} from 'react-router-dom';
-import {useUser} from '../hooks/apiHooks';
 import {useEffect, useState} from 'react';
+import {useUser} from '../hooks/apiHooks';
 
-export const Profile = () => {
-  const [user, setUser] = useState(null);
+const Profile = () => {
+  const [user, setUser] = useState({});
   const {getUserByToken} = useUser();
 
-  const getUser = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const userData = await getUserByToken(token);
-      setUser(userData.user);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
   useEffect(() => {
+    const getUser = async () => {
+      const token = localStorage.getItem('token');
+      const userResponse = await getUserByToken(token);
+      setUser(userResponse.user);
+    };
     getUser();
   }, []);
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold">Tämä on minun profiilisivu</h2>
-
-      <p>
-        <Link to="/">Navigoi takaisin etusivulle</Link>
-      </p>
+    <>
+      <h2>Profile</h2>
       <div>
-        {user && (
-          <>
-            <p>Käyttäjätunnus: {user.username} </p>
-            <p>email: {user.email} </p>
-            <p>luotu: {new Date(user.created_at).toLocaleString('fi-FI')}</p>
-          </>
-        )}
+        <p>Username: {user.username}</p>
+        <p>Email: {user.email}</p>
       </div>
-    </div>
+    </>
   );
 };
+
+export default Profile;

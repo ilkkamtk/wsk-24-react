@@ -15,7 +15,7 @@ const Login = () => {
       {toggleForm ? <LoginForm /> : <RegisterForm />}
       <Button
         text={toggleForm ? 'Not registered yet?' : 'Go to login'}
-        handleClick={toggle}
+        onClick={toggle}
       />
     </>
   );
