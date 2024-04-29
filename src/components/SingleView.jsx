@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Button from './UI/Button';
+import Likes from './Likes';
 
 const SingleView = (props) => {
   const {selectedItem, setSelectedItem} = props;
@@ -12,12 +13,12 @@ const SingleView = (props) => {
       open={selectedItem ? true : false}
     >
       <p>
-        <Button text="Close" handleClick={handleClick} />
+        <Button text="Close" onClick={handleClick} />
       </p>
       {selectedItem && (
         <>
           {selectedItem.media_type.includes('video') ? (
-            <video className="m-auto h-3/4 content-center" controls>
+            <video className="m-auto h-1/2 content-center" controls>
               <source
                 src={selectedItem.filename}
                 type={selectedItem.media_type}
@@ -25,7 +26,7 @@ const SingleView = (props) => {
             </video>
           ) : (
             <img
-              className="m-auto h-3/4"
+              className="m-auto h-1/2"
               src={selectedItem.filename}
               alt={selectedItem.title}
             />
@@ -34,6 +35,7 @@ const SingleView = (props) => {
           <p>{selectedItem.description}</p>
           <p>Created: {new Date(selectedItem.created_at).toLocaleString()}</p>
           <p>Size: {selectedItem.filesize}</p>
+          <Likes id={selectedItem.media_id} />
         </>
       )}
     </dialog>

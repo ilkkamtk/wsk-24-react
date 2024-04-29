@@ -170,4 +170,54 @@ const useFile = () => {
   return {postFile};
 };
 
-export {useMedia, useAuthentication, useUser, useFile};
+const useLike = () => {
+  const postLike = async (media_id, token) => {
+    const likeObject = {
+      media_id: media_id,
+    };
+
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+      body: JSON.stringify(likeObject),
+    };
+
+    return await fetchData(
+      import.meta.env.VITE_MEDIA_API + '/likes',
+      fetchOptions,
+    );
+  };
+
+  const deleteLike = async (media_id, token) => {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    };
+
+    return await fetchData(
+      import.meta.env.VITE_MEDIA_API + '/likes/' + media_id,
+      options,
+    );
+  };
+
+  const getLikeCountByMediaId = (media_id) => {
+    return fetchData(
+      import.meta.env.VITE_MEDIA_API + '/likes/count/' + media_id,
+    );
+  };
+
+  const getUserLikeByMediaId = (media_id) => {
+    return fetchData(
+      import.meta.env.VITE_MEDIA_API + '/likes/bymedia/user/' + media_id,
+    );
+  };
+
+  return {postLike, deleteLike, getLikeCountByMediaId, getUserLikeByMediaId};
+};
+
+export {useMedia, useAuthentication, useUser, useFile, useLike};
