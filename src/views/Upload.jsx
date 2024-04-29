@@ -78,7 +78,11 @@ const Upload = () => {
         </div>
         <>
           {file && file.type.includes('video') ? (
-            <video src={URL.createObjectURL(file)} controls></video>
+            <video
+              className="w-1/3"
+              src={URL.createObjectURL(file)}
+              controls
+            ></video>
           ) : (
             <img
               src={
@@ -87,7 +91,7 @@ const Upload = () => {
                   : 'https://via.placeholder.com/200?text=Choose+image'
               }
               alt="preview"
-              width="200"
+              className="w-1/3"
             />
           )}
         </>
