@@ -67,7 +67,26 @@ const useMedia = () => {
     );
   };
 
-  return {mediaArray, postMedia, deleteMedia};
+  const getMediaById = async (id) => {
+    return await fetchData(import.meta.env.VITE_MEDIA_API + '/media/' + id);
+  };
+
+  const putMedia = async (id, inputs, token) => {
+    const fetchOptions = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+      body: JSON.stringify(inputs),
+    };
+    return await fetchData(
+      import.meta.env.VITE_MEDIA_API + '/media/' + id,
+      fetchOptions,
+    );
+  };
+
+  return {mediaArray, postMedia, deleteMedia, getMediaById, putMedia};
 };
 
 const useUser = () => {

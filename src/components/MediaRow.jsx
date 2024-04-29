@@ -32,7 +32,7 @@ const MediaRow = ({item, deleteMedia}) => {
           View linkki
         </Link>
         <Button text="delete" onClick={handleDelete} className="bg-red-500" />
-        <Button text="edit" />
+        <Link to={`/modify/${item.media_id}`}>Modify</Link>
       </td>
     </tr>
   );

@@ -8,6 +8,7 @@ import Login from './views/Login';
 import {UserProvider} from './contexts/UserContext';
 import Logout from './views/Logout';
 import ProtectedRoute from './components/ProtectedRoute';
+import Modify from './views/Modify';
 
 const App = () => {
   return (
@@ -32,7 +33,15 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
-            <Route path="/single" element={<Single />} />
+            <Route
+              path="/modify/:id"
+              element={
+                <ProtectedRoute>
+                  <Modify />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/media/:id" element={<Single />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
           </Route>
