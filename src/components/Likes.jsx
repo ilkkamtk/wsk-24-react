@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import {useEffect, useState} from 'react';
 import {useLike} from '../hooks/apiHooks';
+import {Heart, HeartDislike} from 'react-ionicons';
 
 const Likes = ({id}) => {
   const [likeCount, setLikeCount] = useState(0);
@@ -59,7 +60,11 @@ const Likes = ({id}) => {
   return (
     <div className="flex w-1/4 justify-around bg-gray-400">
       <p>{likeCount}</p>
-      <button onClick={handleLike}>{userLike ? 'Dislike' : 'Like'}</button>
+      {userLike ? (
+        <HeartDislike color={'#FF0000'} onClick={handleLike} />
+      ) : (
+        <Heart color={'#FF0000'} onClick={handleLike} />
+      )}
     </div>
   );
 };

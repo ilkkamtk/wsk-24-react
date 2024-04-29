@@ -1,5 +1,6 @@
 import {Link, Outlet} from 'react-router-dom';
 import {useUserContext} from '../hooks/contextHooks';
+import {CloudUpload, Home, LogIn, Person} from 'react-ionicons';
 
 const Layout = () => {
   const {user, handleAutoLogin} = useUserContext();
@@ -12,10 +13,18 @@ const Layout = () => {
     <div>
       <header>
         <nav>
-          <Link to="/">Etusivu 🏠</Link>
-          <Link to="/profile">Profiili 😃</Link>
-          <Link to="/upload">Upload</Link>
-          <Link to="/login">Login</Link>
+          <Link to="/">
+            <Home />
+          </Link>
+          <Link to="/profile">
+            <Person />
+          </Link>
+          <Link to="/upload">
+            <CloudUpload />
+          </Link>
+          <Link to="/login">
+            <LogIn />
+          </Link>
         </nav>
       </header>
       <main>
