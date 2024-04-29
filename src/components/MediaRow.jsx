@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import {Link, useNavigate} from 'react-router-dom';
 import Button from './UI/Button';
+import Likes from './Likes';
 
 const MediaRow = ({item, deleteMedia}) => {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const MediaRow = ({item, deleteMedia}) => {
         </Link>
         <Button text="delete" onClick={handleDelete} className="bg-red-500" />
         <Link to={`/modify/${item.media_id}`}>Modify</Link>
+        <Likes id={item.media_id} />
       </td>
     </tr>
   );
